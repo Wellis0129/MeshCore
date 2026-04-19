@@ -1,6 +1,6 @@
-#include <Arduino.h>
 #include "Pico2WBoard.h"
 
+#include <Arduino.h>
 #include <Wire.h>
 
 static void connect_callback(uint16_t conn_handle){
@@ -28,11 +28,16 @@ void Pico2WBoard::begin()
     #endif
 
     #if defined(PIN_BOARD_SDA) && defined(PIN_BOARD_SCL)
-    Wire.setPins(PIN_BOARD_SDA, PIN_BOARD_SCL);
+    //    Wire.setPins(PIN_BOARD_SDA, PIN_BOARD_SCL);
     #endif
 
     Wire.begin();
-
+    
+    #if defined(P_LORA_EN)
+        pinMode(P_LORA_EN, OUTPUT);
+        digitalWrite(P_LORA_EN, HIGH);
+    #endif
+    
     delay(10);
 
 };

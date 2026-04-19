@@ -1,11 +1,11 @@
-#include <Arduino.h>
 #include "target.h"
+#include <Arduino.h>
 #include "Pico2WBoard.h"
 #include <helpers/ArduinoHelpers.h>
 
 Pico2WBoard board;
 
-RADIO_CLASS radio = new Module(P_LORA_CS, P_LORA_DIO_0, P_LORA_RESET, P_LORA_DIO_1);
+RADIO_CLASS radio = new Module(P_LORA_NSS, P_LORA_DIO_1, P_LORA_RESET, P_LORA_DIO_0);
 
 WRAPPER_CLASS radio_driver(radio, board);
 
@@ -16,8 +16,7 @@ SensorManager sensors;
 bool radio_init()
 {
     rtc_clock.begin(Wire);
-
-    return radio.std_init(&SPI1);
+    return radio.std_init();
 }
 
 uint32_t radio_get_rng_seed() {
