@@ -5,7 +5,7 @@
 
 Pico2WBoard board;
 
-RADIO_CLASS radio = new Module(P_LORA_NSS, P_LORA_DIO_1, P_LORA_RESET, P_LORA_DIO_0);
+RADIO_CLASS radio = new Module(P_LORA_NSS, P_LORA_DIO_0, P_LORA_RESET, P_LORA_DIO_1);
 
 WRAPPER_CLASS radio_driver(radio, board);
 
